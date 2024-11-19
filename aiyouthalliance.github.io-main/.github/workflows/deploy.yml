@@ -19,6 +19,6 @@ jobs:
         server: ${{ secrets.FTP_HOST }}
         username: ${{ secrets.username }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./  # Root folder of your repository
+        local-dir: ./  # Root folder of repository
         server-dir: /aiyouthalliance.tech/public/  # Target directory for deployment
 
