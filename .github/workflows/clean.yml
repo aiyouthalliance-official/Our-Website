@@ -15,6 +15,6 @@ jobs:
         username: ${{ secrets.username }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./  # Required, but no files will be uploaded
-        server-dir: /htdocs  # Target directory to clean
+        server-dir: /htdocs/ # Target directory to clean
         dry-run: false  # Ensure actual execution
         dangerous-clean-slate: true  # Deletes all files in the server-dir
