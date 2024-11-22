@@ -13,44 +13,39 @@ jobs:
       # Step 1: Checkout code from the repository
       - name: Checkout repository
         uses: actions/checkout@v3
-        # Version: actions/checkout@v3 is stable and feature-complete.
 
       # Step 2: Set up PHP
       - name: Set up PHP environment
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-        # Version: shivammathur/setup-php@v2 supports modern PHP versions.
 
       # Step 3: Install PHP dependencies
       - name: Install dependencies
         run: composer install
-        # Ensure all project dependencies are installed before deployment.
 
-      # Step 4: Backup current files locally (optional but recommended)
+      # Step 4: Backup current files locally (exclude `.git/` and `backup.tar.gz`)
       - name: Create Backup (backup.tar.gz)
         run: |
-          # Backup all files in the current directory, excluding the backup file itself
-          tar --exclude='./backup.tar.gz' -czvf backup.tar.gz .
-        # Ensures data recovery in case of deployment issues.
+          # Exclude `.git/` directory and the backup file itself from the archive
+          tar --exclude='./.git' --exclude='./backup.tar.gz' -czvf backup.tar.gz .
+        # This ensures `.git/` and the backup file are not included in the archive.
 
       # Step 5: Clean remote directory (dangerous-clean-slate)
       - name: Clean up remote FTP directory
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
-          server: ${{ secrets.FTP_SERVER }}      # FTP server address
-          username: ${{ secrets.FTP_USERNAME }} # FTP username
-          password: ${{ secrets.FTP_PASSWORD }} # FTP password
-          dangerous-clean-slate: true           # Removes all remote files before upload
-        # Version: SamKirkland/FTP-Deploy-Action@4.0.0 ensures compatibility with the latest features.
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          dangerous-clean-slate: true
 
       # Step 6: Deploy new files to FTP server
       - name: Deploy to FTP server
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
-          server: ${{ secrets.FTP_SERVER }}      # FTP server address
-          username: ${{ secrets.FTP_USERNAME }} # FTP username
-          password: ${{ secrets.FTP_PASSWORD }} # FTP password
-          local-dir: ./                          # Upload all files from the local directory
-          exclude: backup.tar.gz                 # Exclude backup from deployment
-        # Version: SamKirkland/FTP-Deploy-Action@4.0.0 supports efficient FTP deployments.
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./  # Upload all files from the current directory
+          exclude: backup.tar.gz  # Exclude the backup file
