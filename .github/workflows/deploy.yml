@@ -26,14 +26,13 @@ jobs:
           # Create a backup of all files in the current directory, excluding the backup file itself
           tar --exclude='./backup.tar.gz' -czvf backup.tar.gz .
 
-      - name: Deploy via FTP (Overwrite)
-        uses: sebastianpopp/ftp-action@v1  # or the correct version you're using
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.4.0
         with:
-          host: ${{ secrets.FTP_HOST }}
+          server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./  # Upload everything from the local directory
-          remote-dir: /home/aiyoutha/domains/aiyouthalliance.tech/public_html
-          exclude: 'backup.tar.gz'  # Exclude the backup file from being uploaded
-          # Optionally, ensure overwriting
-          overwrite: true  # Make sure files are overwritten on the remote server
+          exclude: backup.tar.gz
+          protocol: ftps  # Use secure FTPS (or plain FTP if required)
+          sync-mode: true # Enable sync mode to overwrite files
