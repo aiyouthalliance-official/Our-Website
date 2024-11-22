@@ -10,29 +10,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout code from the repository
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        # Version Check: Using actions/checkout v3 for stability and latest features.
 
+      # Step 2: Set up PHP
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
+        # Version Check: Using shivammathur/setup-php v2 for PHP environment setup.
 
+      # Step 3: Install PHP dependencies
       - name: Install dependencies
         run: composer install
 
+      # Step 4: Create a backup of the current directory
       - name: Create Backup (backup.tar.gz)
         run: |
           # Create a backup of all files in the current directory, excluding the backup file itself
           tar --exclude='./backup.tar.gz' -czvf backup.tar.gz .
+        # Note: Backup ensures data recovery in case of issues during deployment.
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.4.0
+      # Step 5: Deploy files to FTP server
+      - name: Deploy via FTP (Overwrite)
+        uses: sebastianpopp/ftp-action@v0.1.0
         with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./  # Upload everything from the local directory
-          exclude: backup.tar.gz
-          protocol: ftps  # Use secure FTPS (or plain FTP if required)
-          sync-mode: true # Enable sync mode to overwrite files
+          host: ${{ secrets.FTP_HOST }}       # FTP server address
+          username: ${{ secrets.FTP_USERNAME }} # FTP username
+          password: ${{ secrets.FTP_PASSWORD }} # FTP password
+          local-dir: ./                         # Upload all files from the local directory
+          remote-dir: /home/aiyoutha/domains/aiyouthalliance.tech/public_html
+          exclude: backup.tar.gz                # Exclude the backup file
+          overwrite: true                       # Ensure files are overwritten on the server
+        # Version Check: Using sebastianpopp/ftp-action v0.1.0 for FTP deployment.
