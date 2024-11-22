@@ -24,12 +24,12 @@ jobs:
       - name: Install dependencies
         run: composer install
 
-      # Step 4: Backup current files locally (exclude `.git/` and `backup.tar.gz`)
+      # Step 4: Create Backup (exclude .git/, vendor/ and backup.tar.gz)
       - name: Create Backup (backup.tar.gz)
         run: |
-          # Exclude `.git/` directory and the backup file itself from the archive
-          tar --exclude='./.git' --exclude='./backup.tar.gz' -czvf backup.tar.gz .
-        # This ensures `.git/` and the backup file are not included in the archive.
+          # Exclude .git/, vendor/ and the backup file itself from the archive
+          tar --exclude='./.git' --exclude='./vendor' --exclude='./backup.tar.gz' -czvf backup.tar.gz .
+        # This ensures .git/, vendor/, and the backup file are not included.
 
       # Step 5: Clean remote directory (dangerous-clean-slate)
       - name: Clean up remote FTP directory
@@ -40,7 +40,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           dangerous-clean-slate: true
 
-      # Step 6: Deploy new files to FTP server
+      # Step 6: Deploy to FTP server
       - name: Deploy to FTP server
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
@@ -48,4 +48,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./  # Upload all files from the current directory
-          exclude: backup.tar.gz  # Exclude the backup file
+          exclude: backup.tar.gz  # Exclude the backup file from upload
