@@ -1,6 +1,7 @@
 <?php
-// Include header if you have a common header for your website
-include('header.php');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+include('../includes/header.php');
 ?>
 
 <div class="container">
@@ -63,7 +64,4 @@ include('header.php');
     <a href="contact-us.php">Contact Us</a>
 </div>
 
-<?php
-// Include footer if you have a common footer for your website
-include('footer.html');
-?>
+<?php include('../includes/footer.php'); ?>
