@@ -1,0 +1,85 @@
+/* Text Color for Different Sections */
+
+/* Hero Section Text */
+.hero h1 {
+    font-size: 4rem;
+    color: #FF5722; /* Orange color for the heading */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    color: #ffffff; /* White color for the paragraph */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    line-height: 1.6;
+    animation: fadeIn 3s ease-in-out;
+}
+
+/* Button Text Color */
+.hero .cta-button {
+    background-color: #4CAF50; /* Green button background */
+    color: white; /* White text on button */
+    padding: 12px 25px;
+    font-size: 1.3rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    margin-top: 20px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    animation: bounceIn 2s ease-in-out;
+}
+
+.hero .cta-button:hover {
+    background-color: #388E3C; /* Darker green on hover */
+    transform: translateY(-5px);
+}
+
+/* Section Text Custom Colors */
+
+/* General Text Section */
+.text-section {
+    color: #3498DB; /* Blue color for text in this section */
+}
+
+/* Secondary Text Color */
+.secondary-text {
+    color: #F39C12; /* Yellow color for secondary text */
+}
+
+/* Heading 2 */
+h2 {
+    color: #E74C3C; /* Red color for H2 headings */
+}
+
+/* Paragraphs in other sections */
+p.other-section {
+    color: #34495E; /* Dark grey color for paragraphs */
+}
+
+/* Links */
+a {
+    color: #8E44AD; /* Purple color for links */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #9B59B6; /* Lighter purple color on hover */
+}
+
+/* Custom Section */
+.custom-text {
+    color: #16A085; /* Teal color for custom sections */
+}
+
+.custom-text p {
+    font-size: 1.2rem; /* Slightly smaller font for custom section paragraphs */
+    color: #2C3E50; /* Dark grey color for paragraphs */
+}

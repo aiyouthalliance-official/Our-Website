@@ -1,0 +1,104 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff; /* Light blue background */
+    color: #333;
+}
+
+header {
+    background-color: #005f73; /* Dark teal background */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.blog-content {
+    padding: 50px 20px;
+    background-color: #fff; /* White background for content */
+}
+
+.blog-entry {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #e9f5f2; /* Light teal background for each blog entry */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.blog-entry h2 {
+    color: #005f73; /* Dark teal color for blog titles */
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.blog-entry p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Blog subscription section */
+.blog-subscription {
+    background-color: #008C76; /* Medium teal background */
+    color: #fff;
+    padding: 30px;
+    text-align: center;
+    border-top: 2px solid #005f73; /* Dark teal border at the top */
+}
+
+.blog-subscription h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.blog-subscription p {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.blog-subscription form input {
+    padding: 12px;
+    margin-right: 10px;
+    font-size: 16px;
+    width: 250px;
+    border: 2px solid #005f73; /* Dark teal border for input */
+    border-radius: 4px;
+}
+
+.blog-subscription form button {
+    padding: 12px 25px;
+    font-size: 16px;
+    background-color: #005f73; /* Dark teal button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.blog-subscription form button:hover {
+    background-color: #003f4d; /* Darker teal when hovering */
+}
+
+/* Footer styles */
+footer {
+    background-color: #005f73; /* Dark teal background for footer */
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
