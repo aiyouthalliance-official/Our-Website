@@ -14,7 +14,7 @@ Through this platform, AI Youth Alliance strives to create a space for like-mind
 
 You can visit the website at:
 
-### [AI Youth Alliance Official Website](https://aiyouthalliance.great-site.net)
+### [AI Youth Alliance Official Website](https://aiyouthalliance.tech)
 
 ## Connect with Us
 
