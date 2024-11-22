@@ -1,0 +1,39 @@
+name: Deploy to Hosting
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: Install dependencies
+        run: composer install
+
+      - name: Create Backup (backup.tar.gz)
+        run: |
+          # Create a backup of all files in the current directory, excluding the backup file itself
+          tar --exclude='./backup.tar.gz' -czvf backup.tar.gz .
+
+      - name: Deploy via FTP (Overwrite)
+        uses: sebastianpopp/ftp-action@v1  # or the correct version you're using
+        with:
+          host: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./  # Upload everything from the local directory
+          remote-dir: /home/aiyoutha/domains/aiyouthalliance.tech/public_html
+          exclude: 'backup.tar.gz'  # Exclude the backup file from being uploaded
+          # Optionally, ensure overwriting
+          overwrite: true  # Make sure files are overwritten on the remote server
