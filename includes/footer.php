@@ -25,7 +25,7 @@
             <!-- Right Side - Copyright and Info -->
             <div class="footer-right">
                 <p>&copy; 2024 AI Youth Alliance. All Rights Reserved.</p>
-                <p><a href="pages/privacy-policy.php">Privacy Policy</a> | <a href="/pages/terms-conditions.php">Terms & Condition</a></p>
+                <p><a href="/pages/privacy-policy.php">Privacy Policy</a> | <a href="/pages/terms-conditions.php">Terms & Condition</a></p>
             </div>
         </div>
     </div>
