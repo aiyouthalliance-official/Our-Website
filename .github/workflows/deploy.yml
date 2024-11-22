@@ -14,8 +14,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Set up PHP
-      - name: Set up PHP environment
+      # Step 2: Set up PHP environment
+      - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
@@ -24,14 +24,14 @@ jobs:
       - name: Install dependencies
         run: composer install
 
-      # Step 4: Create Backup (exclude .git/, vendor/ and backup.tar.gz)
+      # Step 4: Create Backup using rsync (exclude .git/, vendor/, node_modules/, and backup file)
       - name: Create Backup (backup.tar.gz)
         run: |
-          # Exclude .git/, vendor/ and the backup file itself from the archive
-          tar --exclude='./.git' --exclude='./vendor' --exclude='./backup.tar.gz' -czvf backup.tar.gz .
-        # This ensures .git/, vendor/, and the backup file are not included.
+          # Create a backup using rsync to avoid "file changed as we read it" error
+          rsync -av --exclude='.git' --exclude='vendor' --exclude='node_modules' --exclude='backup.tar.gz' ./ /tmp/backup/
+          tar -czvf backup.tar.gz -C /tmp backup
 
-      # Step 5: Clean remote directory (dangerous-clean-slate)
+      # Step 5: Clean remote FTP directory
       - name: Clean up remote FTP directory
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
